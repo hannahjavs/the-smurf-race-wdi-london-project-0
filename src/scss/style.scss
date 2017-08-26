@@ -4,6 +4,7 @@ body {
   background: skyblue;
   // display: flex;
   // justify-content: center;
+  text-align: center;
 }
 
 #gamePane {
@@ -50,10 +51,13 @@ body {
     border:2px solid brown;
 }
 
-.turn {
-  text-align: center;
-  text-transform: uppercase;
-}
+// p.result  {
+//   background-color: #006cb0;
+//   color: black;
+//   padding: 8px 12px;
+//   height: 34px;
+//   border-radius: 4px;
+// }
 
 // Audio CSS
 .audio:not([controls]) {
