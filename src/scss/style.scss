@@ -1,23 +1,21 @@
 /* Main Page Design */
 
-body {
+* {
   background: skyblue;
-  // display: flex;
-  // justify-content: center;
   text-align: center;
 }
 
 #gamePane {
     width:100%;
-    height:500px;
-    border:2px solid #006cb0;
-    position: relative;
-    display: inline-block;
+    height:200px;
+    border:2px solid lightgrey;
+    top: 300px;
 }
 
 #smurf1 {
     position: absolute;
-    top:140px;
+    // top:140px;
+    bottom: 350px;
     left:0%;
     width:20px;
     height:20px;
@@ -26,7 +24,8 @@ body {
 
 #smurf2 {
     position: absolute;
-    top:240px;
+    // top:240px;
+    bottom: 300px;
     left:0%;
     width:20px;
     height:20px;
@@ -35,7 +34,8 @@ body {
 
 #annoyingShroom {
     position: absolute;
-    top:250px;
+    // top:250px;
+    bottom: 300px;
     left:50%;
     width:20px;
     height:20px;
@@ -44,20 +44,13 @@ body {
 
 #smurfHouse {
     position: absolute;
-    top:240px;
+    bottom: 300px;
+    // top:240px;
     left:90%;
     width:20px;
     height:20px;
     border:2px solid brown;
 }
-
-// p.result  {
-//   background-color: #006cb0;
-//   color: black;
-//   padding: 8px 12px;
-//   height: 34px;
-//   border-radius: 4px;
-// }
 
 // Audio CSS
 .audio:not([controls]) {
