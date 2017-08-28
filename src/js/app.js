@@ -3,119 +3,91 @@ $(() => {
   // List of variables needed for the game
   const $smurf1 = $('#smurf1');
   const $smurf2 = $('#smurf2');
+  const $annoyingShroom = $('#annoyingShroom');
+  const $brokenTree = $('#brokenTree');
+  const $smurfHouse = $('#smurfHouse');
   const $result = $('.result');
 
-  // List of variables needed for the game
+  // List of let variables needed for the game
   let smurf1LastMove = 188;
   let smurf2LastMove = 90;
+  let gameOver = false;
 
   // Audio variables.
   const $winSound = $('.winSound')[0];
 
-
   // FUNCTIONS HERE
-
-  // PLAYER 1 KEY FUNCTIONS
-  $(window).keyup(function(e) {
-    if(e.which === 190 && smurf1LastMove === 188) {
-      // e.which means the scomputer is waiting to see which keys are pressed
-      smurf1LastMove = 190;
-      console.log('smurf1LastMove is:', smurf1LastMove);
-      $smurf1.animate({ left: '+=10%' }, 'fast', () => {
-        const smurfPosition = parseFloat($smurf1.css('left'));
-        console.log(smurfPosition);
-        if(smurfPosition >= 50) $result.html('SMURF 1 YOU WIN!!!');
-        else if
-        (smurfPosition < 50) $result.html('SMURF 1 YOU LOOOSE!!!');
+  function animateSmurf($smurf) {
+    if($smurf.collided || gameOver) return false;
+    $smurf.animate({ left: '+=10%' }, 'fast', () => {
+      const smurfPos = $smurf.offset().left;
+      const smurfHousePos = $smurfHouse.offset().left;
+      checkCollisionAnnoyingShroom($smurf);
+      checkCollisionBrokenTree($smurf);
+      if(smurfPos >= smurfHousePos) {
+        $result.html($smurf.text() + ' YOU WIN!!!');
         // when it hits 50px also play winsound!
         $winSound.play();
-      });
-
-    } else if (e.which === 188 && smurf1LastMove === 190) {
-      smurf1LastMove = 188;
-      console.log('smurf1LastMove is:', smurf1LastMove);
-      $smurf1.animate({ left: '+=10%' }, 'fast', () => {
-        const smurfPosition = parseFloat($smurf1.css('left'));
-        console.log(smurfPosition);
-        if(smurfPosition >= 50) $result.html('SMURF 1 YOU WIN!!!');
-        else if
-        (smurfPosition < 50) $result.html('SMURF 1 YOU LOOOSE!!!');
-        $winSound.play();
-      });
-    }
-  });
-
-
-  // PLAYER 2 KEY FUNCTIONS
-  $(window).keyup(function(e) {
-    console.log('keyup');
-    if(e.which === 90 && smurf2LastMove === 88) {
-      smurf2LastMove = 90;
-      console.log('smurf2LastMove is:', smurf2LastMove);
-      $smurf2.animate({ left: '+=10%' }, 'fast', () => {
-        const smurfPosition = parseFloat($smurf2.css('left'));
-        if(smurfPosition >= 50) $result.html('SMURF 2 YOU WIN!!!');
-        else if
-        (smurfPosition < 50) $result.html('SMURF 2 YOU LOOOSE!!!');
-        $winSound.play();
-      });
-
-    } else if (e.which === 88 && smurf2LastMove === 90) {
-      smurf2LastMove = 88;
-      console.log('smurf2LastMove is:', smurf2LastMove);
-      $smurf2.animate({ left: '+=10%' }, 'fast', () => {
-        const smurfPosition = parseFloat($smurf2.css('left'));
-        console.log(smurfPosition);
-        if(smurfPosition >= 50) $result.html('SMURF 2 YOU WIN!!!');
-        else if
-        (smurfPosition < 50) $result.html('SMURF 2 YOU LOOOSE!!!');
-        $winSound.play();
-      });
-    }
-  });
-
-  // Above function checks to see if the player has pressed key 190 AND then 188 or key 88 and then 90 in order to move.
-  // parseFloat() turns string into number so you can compare it to the finish line number.
-
-
-  // COLLIDING WITH THE ANNOYING SHROOM.
-  // Players must press the up arrow key to jump & continue the race.
-  function checkCollision() {
-    const smurf1Pos = $smurf1Pos.offset();
-    const smurf2Pos = $smurf2Pos.offset();
-    const $annoyingShroomPos = $annoyingShroomPos.offset();
-
-    const $smurf1RightPos = $smurf1Pos + $smurf1.width();
-    const $smurf2RightPos = $smurf2Pos + $smurf2.width();
+        gameOver = true;
+      }
+    });
   }
 
-  // If smurf1 reaches the annoyingShroom then,
-  if((smurf1RightPos >= annoyingShroomPos.left)) {
-    // when smurf one reaches annoyingShroom it is held up aka stops!
-    smurf1.stop();
-    // player then has to press key #38 in order to jump over the shroom.
-    $(window).keyup(function(e) {
-      (e.which === 38)
-      // and smurf1 will jump over mushroom and continue to smurf house.
-      console.log('smurf1 jumped');
+  // KEY FUNCTIONS
+  $(window).keyup(function(e) {
+    if(e.which === 190 && smurf1LastMove === 188 || e.which === 188 && smurf1LastMove === 190) {
+      // e.which means the scomputer is waiting to see which keys are pressed
+      smurf1LastMove = e.which;
+      animateSmurf($smurf1);
+    } else if(e.which === 90 && smurf2LastMove === 88 || e.which === 88 && smurf2LastMove === 90) {
+      smurf2LastMove = e.which;
+      animateSmurf($smurf2);
     }
 
-    // Same for Smurf2
-    if((smurf2RightPos >= annoyingShroomPos.left)) {
-      smurf2.stop();
-      $(window).keyup(function(e) {
-        (e.which === 38)
-        console.log('smurf2 jumped');
-      }
+    if($smurf1.collided && e.which === 76) {
+      $smurf1.collided = false;
+    }
+    if($smurf2.collided && e.which === 83) {
+      $smurf2.collided = false;
+    }
+  });
 
 
+  // Above function checks to see if the player has pressed key 190 AND then 188 or key 88 and then 90 in order to move.
 
 
-      // COLLIDING AND DUCKING UNDER THE BROKEN TREE BRANCH.
-      // Players must press the down arrow key duck and continue the race.
-      function checkCollision() {
+  // COLLIDING WITH ANNOYING SHROOM.
+  // Players must press the up arrow key to jump & continue the race.
+  function checkCollisionAnnoyingShroom($smurf) {
+    const smurfPos = $smurf.offset();
+    const annoyingShroomPos = $annoyingShroom.offset();
 
-      }
+    const smurfRightPos = smurfPos.left + $smurf1.width();
+    const annoyingShroomRightPos = annoyingShroomPos.left + $annoyingShroom.width();
 
+    // if the right edge of the smurf is greater or equal to the left edge of the SHROOM
+    // AND the left edge of the smurf is less or equal to the right edge of the SHROOM
+    if((smurfRightPos >= annoyingShroomPos.left) && (smurfPos.left <= annoyingShroomRightPos)) {
+      $smurf.collided = true;
+    }
+  }
 
-    });
+  // COLLIDING WITH TREE
+  function checkCollisionBrokenTree($smurf) {
+    const smurfPos = $smurf.offset();
+    const brokenTreePos = $brokenTree.offset();
+
+    const smurfRightPos = smurfPos.left + $smurf1.width();
+    const brokenTreeRightPos = brokenTreePos.left + $brokenTree.width();
+
+    // if the right edge of the smurf is greater or equal to the left edge of the SHROOM
+    // AND the left edge of the smurf is less or equal to the right edge of the SHROOM
+    if((smurfRightPos >= brokenTreePos.left) && (smurfPos.left <= brokenTreeRightPos)) {
+      $smurf.collided = true;
+    }
+  }
+});
+
+// RESET BUTTON
+
+// GAME OVER FUNCTION

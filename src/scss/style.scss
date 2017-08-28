@@ -52,6 +52,16 @@
     border:2px solid brown;
 }
 
+#brokenTree {
+    position: absolute;
+    bottom: 300px;
+    // top:240px;
+    left:70%;
+    width:20px;
+    height:20px;
+    border:2px solid black;
+}
+
 // Audio CSS
 .audio:not([controls]) {
     display: none;
