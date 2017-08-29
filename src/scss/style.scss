@@ -1,68 +1,168 @@
 /* Main Page Design */
 
-* {
-  background: skyblue;
-  text-align: center;
+body {
+  max-width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  font-family: 'Karla', sans-serif;
+  background-color: #fafafa;
+  line-height: 1.2;
 }
 
-#gamePane {
+/*HEADER*/
+
+.header-wrapper {
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex; /*the container to fill the whole width of the screen*/
+  border: 1px solid lightgrey;
+}
+
+header {
+    margin: 0 auto;
+    max-width: 100%;
+    border: 1px solid red;
+    text-align: center
+}
+
+h2 h3 {
+  text-align: center;
+  color: grey;
+}
+
+/*PAGE WRAPPER*/
+
+.page-wrapper {
+  flex-wrap: wrap;
+  display: flex; /*Will bring the footer up*/
+  justify-content: center;
+  border: 1px solid black;
+}
+
+/*MAIN*/
+
+main {
+  flex-basis: 100%;
+  padding: 60px 20px 0;
+}
+
+.game-wrapper {
+    position: relative;
     width:100%;
     height:200px;
     border:2px solid lightgrey;
-    top: 300px;
+    background-color: white;
+}
+
+.images {
+  top: 50%;
+  width: 6vw;
+  height: 6vw;
 }
 
 #smurf1 {
     position: absolute;
-    // top:140px;
-    bottom: 350px;
-    left:0%;
-    width:20px;
-    height:20px;
-    background-color: #006cb0;
+    left:2%;
+    background-image:url('/images/smurf1.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    // width:70px;
+    // height:80px;
+    font-size: 0;
 }
 
 #smurf2 {
     position: absolute;
-    // top:240px;
-    bottom: 300px;
     left:0%;
-    width:20px;
-    height:20px;
-    background-color: #006cb0;
+    background-image:url('/images/Smurphette.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    // width: 90px;
+    // height: 90px;
+    font-size: 0;
 }
 
 #annoyingShroom {
     position: absolute;
-    // top:250px;
-    bottom: 300px;
-    left:50%;
-    width:20px;
-    height:20px;
-    background-color: red;
-}
-
-#smurfHouse {
-    position: absolute;
-    bottom: 300px;
-    // top:240px;
-    left:90%;
-    width:20px;
-    height:20px;
-    border:2px solid brown;
+    left:30%;
+    background-image:url('/images/annoyingShroom.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    // width:41;
+    // height:80px;
 }
 
 #brokenTree {
     position: absolute;
-    bottom: 300px;
-    // top:240px;
-    left:70%;
-    width:20px;
-    height:20px;
-    border:2px solid black;
+    left:60%;
+    // width:20px;
+    // height:20px;
+    background-color: green;
+}
+
+#smurfHouse {
+    position: absolute;
+    left:93%;
+    // width:20px;
+    // height:20px;
+    background-color: brown;
+}
+
+/*SCOREBOARD*/
+
+.scoreboard-wrapper {
+  max-width: 935px;
+  height: 75px;
+  padding: 0 80px;
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid lightgrey;
+}
+
+/*START/RESET*/
+
+.reset-panel {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 // Audio CSS
 .audio:not([controls]) {
     display: none;
+}
+
+/*FOOTER*/
+
+a {
+  text-decoration: none;
+}
+
+footer {
+  max-width: 100%;
+  font-size: 12px;
+  border: 1px solid lightgrey;
+  flex-basis: 100%;
+}
+
+footer ul {
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+footer ul li {
+  margin: 0; // places in the middle.
+  color: #999;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.5;
+  list-style-type: none;
+  padding: 10px;
+  display: inline-block;
+
 }

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>I SMURF Y♥U</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- inject:js -->
     <!-- endinject -->
@@ -10,27 +11,45 @@
     <!-- endinject -->
   </head>
   <body>
-
-  <!-- Audio Links For Game -->
-  <audio class="winSound" src="http://soundbible.com/mp3/Ta%20Da-SoundBible.com-1884170640.mp3"></audio>
-
-
-  <!-- Comments/Game Instructions -->
-  <h3 class="turn">Make your first smurf move!</h3>
-
-  <!-- Game Pane/Track -->
-
-  <p class="result"></p>
-
-  <div id="gamePane">
-
-    <div id="smurf1">Smurf</div>
-    <div id="smurf2">Smurfette</div>
-    <div id="annoyingShroom">Annoying Shroom</div>
-    <div id="smurfHouse">Smurf House</div>
-    <div id="brokenTree">Broken Tree</div>
-
-  </div>
-
-  </body>
+    <!-- Audio Links For Game -->
+    <audio class="winSound" src="http://soundbible.com/mp3/Ta%20Da-SoundBible.com-1884170640.mp3"></audio>
+    <div class="header-wrapper">
+      <header>
+        <h2>Race to the smurf house</h2>
+        <h3 class="turn">Press start and then hit keys as fast as you can to make your smurf get to the house first!</h3>
+    <div class="reset-panel">
+        <!-- Start/Reset Buttons -->
+        <button class="start">Start</button>
+        <button class="reset">Reset</button>
+    </div>
+        <!-- Winner Notification -->
+        <p class="result"></p>
+      </header>
+    </div>
+    <div class="page-wrapper">
+      <main>
+          <div class="game-wrapper">
+            <div class="images" id="annoyingShroom"></div>
+            <div class="images" id="smurfHouse">Smurf House</div>
+            <div class="images" id="brokenTree">Broken Tree</div>
+            <div class="images" id="smurf1">SMURF</div>
+            <div class="images" id="smurf2">SMURFETTE</div>
+          </div>
+          <div class="scoreboard-wrapper">
+            <h4>Smurf 1 Score: <span class="smurf1score">0</span>
+            <h4>Smurf 2 Score: <span class="smurf2score">0</span></h4>
+          </div>
+      </main>
+    </div>
+  <!-- Footer -->
+  <footer>
+    <ul>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">GitHub</a></li>
+      <!-- <i class="fa fa-github-alt" aria-hidden="true"></i> -->
+      <li><a href="#">Email</a></li>
+      <li><a href="#">Website</a></li>
+    </ul>
+  </footer>
+</body>
 </html>
