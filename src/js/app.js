@@ -35,24 +35,27 @@ $(() => {
     $smurf1.css({ left: '0%' });
     $smurf2.css({ left: '0%' });
     $result.html(''); // Do not display who has won. This is making an empty string.
-    // resetScore();
+    smurf1score = 0;
+    smurf2score = 0;
+    $smurf1score.text(smurf1score);
+    $smurf2score.text(smurf2score);
   }
 
 
   function animateSmurf($smurf) {
-    if($smurf.collided || gameOver) return false; // either smurf has been added or it is gameover.
-    $smurf.animate({ left: '+=5%' }, 'slow', () => {
+    if($smurf.collided || gameOver || $smurf.is(':animated')) return false; // either smurf has been added or it is gameover.
+    $smurf.animate({ left: '+=5%' }, 'fast', () => {
       console.log($smurf.offset());
       const name = $smurf.text();
       const smurfPos = $smurf.offset().left;
       const smurfHousePos = $smurfHouse.offset().left; // tells JS where the smurfHouse is on the screen, specifically where the left side of the house is.
       checkCollisionAnnoyingShroom($smurf); // Checking for a collision with the shroom everytime the smurf moves.
-      console.log(checkCollisionAnnoyingShroom);
 
       checkCollisionBrokenTree($smurf); // Checking for a collision with the tree everytime the smurf moves.
-      console.log(checkCollisionBrokenTree);
 
       // checkCollisionSmurfHouse($smurf);
+
+
 
       if(smurfPos >= smurfHousePos) { // If the smurf position is greater or equal to the smurfHouse position then,
         $result.html(name + ' WINS!!!'); // this smurf has won!
@@ -61,13 +64,11 @@ $(() => {
 
 
         // SCORE BOARD UPDATE FUNCTION
-        if(name === 'Smurf' && smurfPos === smurfHousePos) {
+        if(name === 'SMURF' && smurfPos >= smurfHousePos) {
           smurf1score++; // add one to the score
-          console.log('smurf1score');
           $smurf1score.text(smurf1score) ;// diplay & update the score1
-        } else {
+        } else if(name ==='SMURFETTE' && smurfPos >= smurfHousePos) {
           smurf2score++; // add one to the score
-          console.log('smurf2score');
           $smurf2score.text(smurf2score); // diplay & update the score2
         }
       }
