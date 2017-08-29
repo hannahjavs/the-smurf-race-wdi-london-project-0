@@ -39,32 +39,10 @@ $(() => {
   }
 
 
-
-  function cpuMoves() {
-      setInterval(() => {
-
-       $cpu.animate({
-          left: '-=20%'
-        }, {
-          duration: 200,
-          progress: collisionCPU,
-          complete() {
-            console.log('complete');
-            $cpu.animate({ left: '+=20%' }, 200);
-          }
-        });
-
-     },5000);
-    }
-
-
   function animateSmurf($smurf) {
     if($smurf.collided || gameOver) return false; // either smurf has been added or it is gameover.
     $smurf.animate({ left: '+=5%' }, 'slow', () => {
       console.log($smurf.offset());
-      duration: 50,
-      progress: collisionSmurfHouse,
-      
       const name = $smurf.text();
       const smurfPos = $smurf.offset().left;
       const smurfHousePos = $smurfHouse.offset().left; // tells JS where the smurfHouse is on the screen, specifically where the left side of the house is.
@@ -73,6 +51,8 @@ $(() => {
 
       checkCollisionBrokenTree($smurf); // Checking for a collision with the tree everytime the smurf moves.
       console.log(checkCollisionBrokenTree);
+
+      // checkCollisionSmurfHouse($smurf);
 
       if(smurfPos >= smurfHousePos) { // If the smurf position is greater or equal to the smurfHouse position then,
         $result.html(name + ' WINS!!!'); // this smurf has won!
@@ -149,6 +129,7 @@ $(() => {
     }
   }
 
+
   // ALL EVENT LISTENERS
 
   $start.on('click', start);
@@ -158,3 +139,20 @@ $(() => {
   console.log($reset);
 
 });
+
+
+
+//POTENTIAL CODE TO STOP THE SCORE INCREASING!
+
+// function checkCollisionSmurfHouse() {
+//   $smurf.animate({
+//     left: '-=5%'
+//   }, {
+//     duration: 50,
+//     progress: checkCollisionSmurfHouse,
+//     complete() {
+//       console.log('complete');
+//       $smurf.animate({ left: '+=5%' }, 50);
+//     }
+//   });
+// }
