@@ -5,6 +5,8 @@
     <title>I SMURF Y♥U</title>
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type = "text/javascript"
+       src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
     <!-- inject:js -->
     <!-- endinject -->
     <!-- inject:css -->
@@ -13,29 +15,45 @@
   <body>
     <!-- Audio Links For Game -->
     <audio class="winSound" src="http://soundbible.com/mp3/Ta%20Da-SoundBible.com-1884170640.mp3"></audio>
-    <div class="header-wrapper">
+    <audio class="mushroomSound" src="http://soundbible.com/mp3/Squish%201-SoundBible.com-662226724.mp3"></audio>
       <header>
+        <div class="instructions">
         <h2>Race to the smurf house</h2>
-        <h3 class="turn">Press start and then hit keys as fast as you can to make your smurf get to the house first!</h3>
-        <h4>Smurf 1 press the , then . to move and L to jump. Smurf 2 press Z then X and S to jump.</h4>
+        <h3 class="turn">Press start and then hit keys as fast as you can to make your smurf get to the house first! Jump on the mushrooms and squish them along the way to get to the end!</h3>
+        <h4>Smurf 1 press the < then > to move and L to jump. Smurf 2 press Z then X and S to jump.</h4>
+        </div>
     <div class="reset-panel">
         <!-- Start/Reset Buttons -->
-        <button class="start">Start</button>
-        <button class="reset">Reset</button>
+        <button class="start">Press Start</button>
+        <button class="reset">Play Again?</button>
     </div>
         <!-- Winner Notification -->
         <p class="result"></p>
+        <!-- Main Menu -->
+        <div class="mainMenu">
+            <p>Pick Your Characters</p>
+          <div class="characters">
+            <div class="pogo_smurf" id="pogo_smurf">Pogo Smurf</div>
+            <div class="wild_smurf" id="wild_smurf">Wild Smurf</div>
+        </div>
       </header>
-    </div>
     <div class="page-wrapper">
       <main>
           <div class="game-wrapper">
-            <div class="images" id="annoyingShroom">Annoying Shroom</div>
-            <div class="images" id="smurfHouse">Smurf House</div>
-            <div class="images" id="brokenTree">Broken Tree</div>
-            <div class="images" id="smurf1">SMURF</div>
-            <div class="images" id="smurf2">SMURFETTE</div>
-          </div>
+            <div class="track1">
+                <div class="images" id="smurf1">SMURF</div>
+                <div class="images mushroom" id="mushroomOne">Mushroom One</div>
+                <div class="images mushroom" id="mushroomTwo">Mushroom Two</div>
+                <div class="images mushroom" id="mushroomThree">Mushroom Three</div>
+              </div>
+            <div class="track2">
+                <div class="images" id="smurf2">SMURFETTE</div>
+                <div class="images mushroom" id="mushroomFour">Mushroom Four</div>
+                <div class="images mushroom" id="mushroomFive">Mushroom Five</div>
+                <div class="images mushroom" id="mushroomSix">Mushroom Six</div>
+            </div>
+              <div class="images" id="smurfHouse">Smurf House</div>
+            </div>
           <div class="scoreboard-wrapper">
             <h4>Smurf 1 Score: <p><span class="smurf1score">0</span></p></h4>
             <h4>Smurf 2 Score: <p><span class="smurf2score">0</span></p></h4>
@@ -53,3 +71,14 @@
   </footer>
 </body>
 </html>
+
+
+
+
+<!-- <div class="rotate">
+  <p>
+    Please turn rotate your screen to play!
+  </br>
+    It will be easier to play!
+  </p>
+</div> -->

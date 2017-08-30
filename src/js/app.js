@@ -4,14 +4,20 @@ $(() => {
   // CONST VARIABLES NEEDED FOR GAME
   const $smurf1 = $('#smurf1');
   const $smurf2 = $('#smurf2');
-  const $annoyingShroom = $('#annoyingShroom');
-  const $brokenTree = $('#brokenTree');
+  const $mushroomOne = $('#mushroomOne');
+  const $mushroomTwo = $('#mushroomTwo');
+  const $mushroomThree = $('#mushroomThree');
+  const $mushroomFour = $('#mushroomFour');
+  const $mushroomFive = $('#mushroomFive');
+  const $mushroomSix = $('#mushroomSix');
   const $smurfHouse = $('#smurfHouse');
   const $result = $('.result');
   const $start = $('.start');
   const $reset = $('.reset');
   const $smurf1score = $('.smurf1score');
   const $smurf2score = $('.smurf2score');
+  const $instructions = $('.instructions');
+  const $mainMenu = $('.mainMenu');
 
   // LET VARIABLES NEEDED FOR GAME
   let smurf1LastMove = 188;
@@ -22,25 +28,35 @@ $(() => {
 
   // AUDIO VARIABLES
   const $winSound = $('.winSound')[0];
+  const $mushroomSound = $('.mushroomSound')[0];
 
 
-  // FUNCTIONS DOWN HERE
+  // FUNCTIONS
 
+  // Pick your character
+  //once player 1 and player 2 have picked a character,
+  //UHIDE the characters and show instructions.
+
+  // Start Function
   function start() { // Do not generate race until start button is clicked
+    $instructions.css('visibility', 'visible');
+    $mainMenu.css('visibility', 'hidden');
     gameOver = false;
+    //When start button is pressed again save the score for the next round.
   }
 
+  // Reset Function
   function reset() {
     // move smurfs back to start position and reset the score.
     $smurf1.css({ left: '0%' });
     $smurf2.css({ left: '0%' });
-    $result.html(''); // Do not display who has won. This is making an empty string.
-    smurf1score = 0;
-    smurf2score = 0;
-    $smurf1score.text(smurf1score);
-    $smurf2score.text(smurf2score);
+    $mushroomOne.show();
+    $mushroomTwo.show();
+    $mushroomThree.show();
+    $mushroomFour.show();
+    $mushroomFive.show();
+    $mushroomSix.show();
   }
-
 
   function animateSmurf($smurf) {
     if($smurf.collided || gameOver || $smurf.is(':animated')) return false; // either smurf has been added or it is gameover.
@@ -49,21 +65,18 @@ $(() => {
       const name = $smurf.text();
       const smurfPos = $smurf.offset().left;
       const smurfHousePos = $smurfHouse.offset().left; // tells JS where the smurfHouse is on the screen, specifically where the left side of the house is.
-      checkCollisionAnnoyingShroom($smurf); // Checking for a collision with the shroom everytime the smurf moves.
-
-      checkCollisionBrokenTree($smurf); // Checking for a collision with the tree everytime the smurf moves.
-
-      // checkCollisionSmurfHouse($smurf);
-
-
-
-      if(smurfPos >= smurfHousePos) { // If the smurf position is greater or equal to the smurfHouse position then,
+      checkCollisionMushroomOne($smurf1);
+      checkCollisionMushroomTwo($smurf1);
+      checkCollisionMushroomThree($smurf1);
+      checkCollisionMushroomFour($smurf2);
+      checkCollisionMushroomFive($smurf2);
+      checkCollisionMushroomSix($smurf2);
+      if(smurfPos >= smurfHousePos) { // If smurf pos is >= to the smurfHouse position then,
         $result.html(name + ' WINS!!!'); // this smurf has won!
         $winSound.play(); // when it hits 50px also play winsound!
         gameOver = true; // This tells the programme it is game over.
 
-
-        // SCORE BOARD UPDATE FUNCTION
+        // Score Board Function
         if(name === 'SMURF' && smurfPos >= smurfHousePos) {
           smurf1score++; // add one to the score
           $smurf1score.text(smurf1score) ;// diplay & update the score1
@@ -75,60 +88,107 @@ $(() => {
     });
   }
 
-
-  // KEY FUNCTIONS
+  // Player 1 & 2 Key Functions
+  // e.which means computer is waiting to see which keys are pressed
   $(window).keyup(function(e) {
     if(e.which === 190 && smurf1LastMove === 188 || e.which === 188 && smurf1LastMove === 190) {
-      // e.which means the scomputer is waiting to see which keys are pressed
       smurf1LastMove = e.which;
       animateSmurf($smurf1);
     } else if(e.which === 90 && smurf2LastMove === 88 || e.which === 88 && smurf2LastMove === 90) {
       smurf2LastMove = e.which;
       animateSmurf($smurf2);
     }
-
-    if($smurf1.collided && e.which === 76) { // if smurf1 collides with an object user presses up
-      $smurf1.collided = false;
+    if($smurf1.collided && e.which === 76) {
+      // if smurf1 collides with an object user presses up and boundes 3 times
+      $smurf1.effect( 'bounce', {times: 3}, 300 );
+      $mushroomSound.play();
+      $smurf1.collided = false; // allows user to continue race
+      $smurf1.collidedWith.hide();
+      // use bounce effect to jump on mushrooms and they disappear after
     }
-    if($smurf2.collided && e.which === 83) { // if smurf2 collides with an object user presses up
-      $smurf2.collided = false; // this allows user to continue race
+    if($smurf2.collided && e.which === 83) {
+      $smurf2.effect( 'bounce', {times: 3}, 300 );
+      $mushroomSound.play();
+      $smurf2.collided = false;
+      $smurf2.collidedWith.hide();
     }
   });
 
   // Players must press the up arrow key to jump & continue the race.
   // Above function checks to see if the player has pressed key 190 AND then 188 or key 88 and then 90 in order to move.
+  // if the right edge of the smurf is greater or equal to the left edge of the SHROOM
+  // AND the left edge of the smurf is less or equal to the right edge of the SHROOM
 
-
-  // MUSHROOM COLLISION FUNCTION
-
-  function checkCollisionAnnoyingShroom($smurf) {
+  // Mushroom One Collision
+  function checkCollisionMushroomOne($smurf) {
     const smurfPos = $smurf.offset();
-    const annoyingShroomPos = $annoyingShroom.offset();
-
+    const mushroomOnePos = $mushroomOne.offset();
     const smurfRightPos = smurfPos.left + $smurf1.width();
-    const annoyingShroomRightPos = annoyingShroomPos.left + $annoyingShroom.width();
-
-    // if the right edge of the smurf is greater or equal to the left edge of the SHROOM
-    // AND the left edge of the smurf is less or equal to the right edge of the SHROOM
-    if((smurfRightPos >= annoyingShroomPos.left) && (smurfPos.left <= annoyingShroomRightPos)) {
+    const mushroomOneRightPos = mushroomOnePos.left + $mushroomOne.width();
+    if((smurfRightPos >= mushroomOnePos.left + 15) && (smurfPos.left <= mushroomOneRightPos)) {
       $smurf.collided = true;
+      $smurf1.collidedWith = $mushroomOne;
     }
   }
-
-  // TREE COLLISION FUNCTION
-  function checkCollisionBrokenTree($smurf) {
+  // Mushroom Two Collision
+  function checkCollisionMushroomTwo($smurf) {
     const smurfPos = $smurf.offset();
-    const brokenTreePos = $brokenTree.offset();
-
+    const mushroomTwoPos = $mushroomTwo.offset();
     const smurfRightPos = smurfPos.left + $smurf1.width();
-    const brokenTreeRightPos = brokenTreePos.left + $brokenTree.width();
-
-    // if the right edge of the smurf is greater or equal to the left edge of the SHROOM
-    // AND the left edge of the smurf is less or equal to the right edge of the SHROOM
-    if((smurfRightPos >= brokenTreePos.left) && (smurfPos.left <= brokenTreeRightPos)) {
+    const mushroomTwoRightPos = mushroomTwoPos.left + $mushroomTwo.width();
+    if((smurfRightPos >= mushroomTwoPos.left + 15) && (smurfPos.left <= mushroomTwoRightPos)) {
       $smurf.collided = true;
+      $smurf1.collidedWith = $mushroomTwo;
     }
   }
+  // Mushroom Three Collision
+  function checkCollisionMushroomThree($smurf) {
+    const smurfPos = $smurf.offset();
+    const mushroomThreePos = $mushroomThree.offset();
+    const smurfRightPos = smurfPos.left + $smurf1.width();
+    const mushroomThreeRightPos = mushroomThreePos.left + $mushroomThree.width();
+    if((smurfRightPos >= mushroomThreePos.left + 15) && (smurfPos.left <= mushroomThreeRightPos)) {
+      $smurf.collided = true;
+      $smurf1.collidedWith = $mushroomThree;
+    }
+  }
+  // Mushroom Four Collision
+  function checkCollisionMushroomFour($smurf) {
+    const smurfPos = $smurf.offset();
+    const mushroomFourPos = $mushroomFour.offset();
+    const smurfRightPos = smurfPos.left + $smurf2.width();
+    const mushroomFourRightPos = mushroomFourPos.left + $mushroomFour.width();
+    if((smurfRightPos >= mushroomFourPos.left + 15) && (smurfPos.left <= mushroomFourRightPos)) {
+      $smurf.collided = true;
+      $smurf2.collidedWith = $mushroomFour;
+    }
+  }
+  // Mushroom Five Collision
+  function checkCollisionMushroomFive($smurf) {
+    const smurfPos = $smurf.offset();
+    const mushroomFivePos = $mushroomFive.offset();
+    const smurfRightPos = smurfPos.left + $smurf2.width();
+    const mushroomFiveRightPos = mushroomFivePos.left + $mushroomFive.width();
+    if((smurfRightPos >= mushroomFivePos.left + 15) && (smurfPos.left <= mushroomFiveRightPos)) {
+      $smurf.collided = true;
+      $smurf2.collidedWith = $mushroomFive;
+    }
+  }
+  // Mushroom Six Collision
+  function checkCollisionMushroomSix($smurf) {
+    const smurfPos = $smurf.offset();
+    const mushroomSixPos = $mushroomSix.offset();
+    const smurfRightPos = smurfPos.left + $smurf2.width();
+    const mushroomSixRightPos = mushroomSixPos.left + $mushroomSix.width();
+    if((smurfRightPos >= mushroomSixPos.left + 15) && (smurfPos.left <= mushroomSixRightPos)) {
+      $smurf.collided = true;
+      $smurf2.collidedWith = $mushroomSix;
+    }
+  }
+  // if the right edge of the smurf is greater or equal to the left edge of the SHROOM
+  // AND the left edge of the smurf is less or equal to the right edge of the SHROOM
+
+
 
 
   // ALL EVENT LISTENERS
@@ -140,20 +200,3 @@ $(() => {
   console.log($reset);
 
 });
-
-
-
-//POTENTIAL CODE TO STOP THE SCORE INCREASING!
-
-// function checkCollisionSmurfHouse() {
-//   $smurf.animate({
-//     left: '-=5%'
-//   }, {
-//     duration: 50,
-//     progress: checkCollisionSmurfHouse,
-//     complete() {
-//       console.log('complete');
-//       $smurf.animate({ left: '+=5%' }, 50);
-//     }
-//   });
-// }
