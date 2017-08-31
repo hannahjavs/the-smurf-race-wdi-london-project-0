@@ -39,24 +39,25 @@ $(() => {
   //UHIDE the characters and show instructions.
 
   // Start Function
-  function start() { // Do not generate race until start button is clicked
-    $instructions.css('visibility', 'visible');
-    $mainMenu.css('visibility', 'hidden');
+  function start() {
+    $instructions.addClass('hidden');
+    $mainMenu.removeClass('hidden');
     gameOver = false;
     //When start button is pressed again save the score for the next round.
   }
-
   // Reset Function
   function reset() {
     // move smurfs back to start position and reset the score.
     $smurf1.css({ left: '0%' });
     $smurf2.css({ left: '0%' });
-    $mushroomOne.show();
+    $mushroomOne.show(); // show mushrooms again on reset
     $mushroomTwo.show();
     $mushroomThree.show();
     $mushroomFour.show();
     $mushroomFive.show();
     $mushroomSix.show();
+    $mainMenu.removeClass('hidden'); // show characters again on reset
+    $instructions.addClass('hidden');
   }
 
   function animateSmurf($smurf) {
@@ -78,10 +79,10 @@ $(() => {
         gameOver = true; // This tells the programme it is game over.
 
         // Score Board Function
-        if(name === 'SMURF' && smurfPos >= finishLinePos) {
+        if(name === 'SMURF1' && smurfPos >= finishLinePos) {
           smurf1score++; // add one to the score
           $smurf1score.text(smurf1score) ;// diplay & update the score1
-        } else if(name ==='SMURFETTE' && smurfPos >= finishLinePos) {
+        } else if(name ==='SMURF2' && smurfPos >= finishLinePos) {
           smurf2score++; // add one to the score
           $smurf2score.text(smurf2score); // diplay & update the score2
         }

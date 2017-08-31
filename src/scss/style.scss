@@ -5,14 +5,18 @@ body {
   height: 100%;
   margin: 0 auto;
   font-family: 'Karla', sans-serif;
-  background-color: #fafafa;
+  background-color: tomato;
   line-height: 1.2;
+}
+
+.hidden {
+  display: none;
 }
 
 /*HEADER*/
 
 .instructions {
-  visibility: hidden;
+  // visibility: hidden;
   background-color: #fff;
   border-bottom: 1px solid #e6e6e6;
   border: 1px solid lightgrey;
@@ -73,8 +77,6 @@ h2 h3 {
   border: 1px solid black;
   text-align: center;
   background-color:#f1f1f1;
-  display: absolute;
-  margin-top: -220px;
 }
 
 /*PAGE WRAPPER*/

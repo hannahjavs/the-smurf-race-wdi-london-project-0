@@ -21,21 +21,22 @@
         <h2>Race to the finish line!</h2>
         <h3 class="turn">Press start and then hit keys as fast as you can to make your smurf get to the house first! Jump on the mushrooms and squish them along the way to get to the end!</h3>
         </div>
-    <div class="reset-panel">
-        <!-- Start/Reset Buttons -->
-        <button class="start">Press Start</button>
-        <button class="reset">Play Again?</button>
-    </div>
         <!-- Winner Notification -->
         <p class="result"></p>
         <!-- Main Menu -->
-        <div class="mainMenu">
+        <div class="mainMenu hidden">
             <p>Pick Your Characters</p>
           <div class="characters">
             <div class="character normalSmurf" id="normalSmurf"></div>
             <div class="character smurphetteSmurf" id="smurphetteSmurf"></div>
             <div class="character superSmurf" id="superSmurf"></div>
             <div class="character wheelieSmurf" id="wheelieSmurf"></div>
+          </div>
+        </div>
+        <div class="reset-panel">
+            <!-- Start/Reset Buttons -->
+            <button class="start">Start Game</button>
+            <button class="reset">Play Again?</button>
         </div>
       </header>
     <div class="page-wrapper">
@@ -43,7 +44,7 @@
           <div class="game-wrapper">
             <div class="track1">
 
-                  <h4>Smurf 2 press the < then > to move and L to jump. </h4>
+                  <p>Smurf 2 press key ',' to initiate move then '.' to move. Press key 'L' to squash the mushrooms in order to get to the finish line! </p>
 
                 <div class="images" id="smurf1">SMURF1<img src="/images/normalSmurf.png" alt="smurf1"></div>
                 <div class="images mushroom" id="mushroomOne">Mushroom One</div>
@@ -52,8 +53,7 @@
               </div>
             <div class="track2">
 
-                  <h4>Smurf 1 press Z then X and S to jump.</h4>
-
+                  <p>Smurf 1 press key 'Z' to initiate move then 'X' to move. Press key 'S' to squash the mushrooms in order to get to the finish line!</p>
 
                 <div class="images" id="smurf2">SMURF2<img src="/images/smurphetteSmurf.png" alt="smurf2"></div>
                 <div class="images mushroom" id="mushroomFour">Mushroom Four</div>
