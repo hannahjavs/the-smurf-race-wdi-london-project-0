@@ -58,8 +58,11 @@ $(() => {
   }
 
 
+ 
+
   // Reset Function
   function reset() {
+    gameOver = false;
     // move smurfs back to start position and reset the score.
     $smurf1.css({ left: '0%' });
     $smurf2.css({ left: '0%' });
@@ -72,11 +75,18 @@ $(() => {
     $mainMenu.removeClass('hidden'); // show characters again on reset
     $instructions.addClass('hidden');
     startClock();
-    // animateSmurf();
+    // Hide last winner result when reset button is clicked
+    $result.html(' ');
+    // Re-animate smurfs for second round
+    startAnimation($('.start'));
+
   }
 
+
+
+
   function animateSmurf($smurf) {
-    if($smurf.collided || gameOver || $smurf.is(':animated')) return false; // either smurf has been added or it is gameover.
+    if($smurf.collided || gameOver || $smurf.is(':animated')) return false; // either smurf has been added or it is gameover
     $smurf.animate({ left: '+=5%' }, 'fast', () => {
       console.log($smurf.offset());
       const name = $smurf.text();
@@ -92,6 +102,9 @@ $(() => {
         $result.html(name + ' WINS!!!').addClass('animated wobble'); // this smurf has won!
         $winSound.play(); // when it hits 50px also play winsound!
         gameOver = true; // This tells the programme it is game over.
+
+
+
 
         // Score Board Function
         if(name === 'SMURF1' && smurfPos >= finishLinePos) {
@@ -221,7 +234,7 @@ $(() => {
   // inside chooseSmurf, grab the ID of the smurf you cliked on, and console log it
 
 
-  // Function to choose characters
+  // Function character selection
   const $characters = $('.character');
 
   $characters.on('click', (e) => {
@@ -232,7 +245,7 @@ $(() => {
       player1Chosen = true;
     } else {
       $smurf2.find('img').attr('src', `images/${id}.png`);
-      // here you could call the start function if you want the game to start AUTOMATICALLY once the second player has clicked
+      // start count down
       startClock();
     }
     $(e.target).addClass('selected');

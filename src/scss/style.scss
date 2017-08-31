@@ -27,6 +27,7 @@ body {
   // border: 1px solid black;
   padding: 0 10px;
   font-size: 50px;
+  color: #bf4f4f;
 }
 
 
@@ -69,6 +70,19 @@ h2 h3 {
 }
 
 /*CHARACTERS*/
+
+.smurfPosition1 {
+  top: 38%;
+  width: 6vw;
+  height: 6vw;
+}
+
+.smurfPosition2 {
+  top: 137%;
+  width: 6vw;
+  height: 6vw;
+}
+
 
 #superSmurf {
   background-image:url('/images/superSmurf.png');
@@ -124,7 +138,6 @@ main {
   height: 200px;
 }
 
-
 .track1 {
   position: relative;
   width:100%;
@@ -141,18 +154,10 @@ main {
   background-color:#f1f1f1;
 }
 
-.trackGround1 {
-
-}
-
-.trackGround2 {
-
-}
-
 .images {
-  top: 50%;
-  width: 6vw;
-  height: 6vw;
+  top: 70%;
+  width: 3vw;
+  height: 3vw;
 }
 
 
