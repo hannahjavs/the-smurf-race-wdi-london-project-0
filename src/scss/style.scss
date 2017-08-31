@@ -30,23 +30,34 @@ h2 h3 {
 /*MAIN MENU*/
 
 .characters {
-  top: 50%;
-  width: 6vw;
-  height: 6vw;
+  display: flex;
+  justify-content: center;
+  div {
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    background-size: contain;
+    background-position: center;
+  }
 }
 
-#pogo_smurf {
-  z-index: 1;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: contain;
-  font-size: 0;
-  border: 1px solid black;
-  background-image:url('/images/pogo_smurf.gif');
+/*CHARACTERS*/
+
+#superSmurf {
+  background-image:url('/images/super_smurf.png');
 }
 
-#wild_smurf {
-  background-image:url('/images/wild_smurf.gif');
+#smurphetteSmurf {
+  background-image:url('/images/smurphette.png');
+}
+
+#wheelieSmurf {
+  background-image:url('/images/wheelie_smurf.png');
+}
+
+#smurfSmurf {
+  background-image:url('/images/smurf1.png');
 }
 
 .mainMenu {
@@ -108,20 +119,28 @@ main {
 }
 
 #smurf1 {
-    background-image:url('/images/smurf1.png');
     position: absolute;
-    background-repeat: no-repeat;
-    background-size: contain;
+    // background-image:url('/images/smurf1.png');
+    // background-repeat: no-repeat;
+    // background-size: contain;
+    font-size: 0
+}
+#smurf2 {
+    position: absolute;
+    // background-image:url('/images/Smurphette.png');
+    // background-repeat: no-repeat;
+    // background-size: contain;
     font-size: 0;
 }
 
-#smurf2 {
-    position: absolute;
-    // left:0%;
-    background-image:url('/images/Smurphette.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    font-size: 0;
+#smurf1 img {
+  height: 65px;
+  width: 40px;
+}
+
+#smurf2 img {
+  height: 65px;
+  width: 40px;
 }
 
 #mushroomOne {
@@ -185,6 +204,7 @@ main {
 }
 
 #smurfHouse {
+    background-image:url('/images/finishLine.png');
     position: absolute;
     left:93%;
     background-color: brown;

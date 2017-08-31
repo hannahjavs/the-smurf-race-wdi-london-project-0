@@ -199,4 +199,28 @@ $(() => {
   $reset.on('click', reset);
   console.log($reset);
 
+  // add event listers to the smurfs at the top
+  // this will call a function called chooseSmurf
+  // inside chooseSmurf, grab the ID of the smurf you cliked on, and console log it
+
+
+  // const $superSmurf = $('#superSmurf.superSmurf');
+  // const $smurphetteSmurf = $('#smurphetteSmurf.smurphetteSmurf');
+  //
+  //
+  //
+  // 
+  //
+  // $superSmurf.on('click', () => {
+  //   $smurf1.attr('src', 'images/super_smurf.png');
+  //   console.log('superSmurf');
+  //
+  // });
+  //
+  // $smurphetteSmurf.on('click', () => {
+  //   $smurf2.attr('src', '/images/smurphette.png');
+  //   console.log('smurphetteSmurf');
+  // });
+
+
 });
