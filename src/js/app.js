@@ -10,7 +10,7 @@ $(() => {
   const $mushroomFour = $('#mushroomFour');
   const $mushroomFive = $('#mushroomFive');
   const $mushroomSix = $('#mushroomSix');
-  const $smurfHouse = $('#smurfHouse');
+  const $finishLine = $('#finishLine');
   const $result = $('.result');
   const $start = $('.start');
   const $reset = $('.reset');
@@ -25,6 +25,7 @@ $(() => {
   let smurf1score = 0;
   let smurf2score = 0;
   let gameOver = true; // the game will not start when DOM is loaded
+  let player1Chosen = null;
 
   // AUDIO VARIABLES
   const $winSound = $('.winSound')[0];
@@ -64,23 +65,23 @@ $(() => {
       console.log($smurf.offset());
       const name = $smurf.text();
       const smurfPos = $smurf.offset().left;
-      const smurfHousePos = $smurfHouse.offset().left; // tells JS where the smurfHouse is on the screen, specifically where the left side of the house is.
+      const finishLinePos = $finishLine.offset().left; // tells JS where the finishLine is on the screen, specifically where the left side of the house is.
       checkCollisionMushroomOne($smurf1);
       checkCollisionMushroomTwo($smurf1);
       checkCollisionMushroomThree($smurf1);
       checkCollisionMushroomFour($smurf2);
       checkCollisionMushroomFive($smurf2);
       checkCollisionMushroomSix($smurf2);
-      if(smurfPos >= smurfHousePos) { // If smurf pos is >= to the smurfHouse position then,
+      if(smurfPos >= finishLinePos) { // If smurf pos is >= to the finishLine position then,
         $result.html(name + ' WINS!!!'); // this smurf has won!
         $winSound.play(); // when it hits 50px also play winsound!
         gameOver = true; // This tells the programme it is game over.
 
         // Score Board Function
-        if(name === 'SMURF' && smurfPos >= smurfHousePos) {
+        if(name === 'SMURF' && smurfPos >= finishLinePos) {
           smurf1score++; // add one to the score
           $smurf1score.text(smurf1score) ;// diplay & update the score1
-        } else if(name ==='SMURFETTE' && smurfPos >= smurfHousePos) {
+        } else if(name ==='SMURFETTE' && smurfPos >= finishLinePos) {
           smurf2score++; // add one to the score
           $smurf2score.text(smurf2score); // diplay & update the score2
         }
@@ -203,24 +204,21 @@ $(() => {
   // this will call a function called chooseSmurf
   // inside chooseSmurf, grab the ID of the smurf you cliked on, and console log it
 
+  const $characters = $('.character');
+  $characters.on('click', (e) => {
+    if($(e.target).hasClass('selected')) return false;
+    const id = $(e.target).attr('id');
 
-  // const $superSmurf = $('#superSmurf.superSmurf');
-  // const $smurphetteSmurf = $('#smurphetteSmurf.smurphetteSmurf');
-  //
-  //
-  //
-  // 
-  //
-  // $superSmurf.on('click', () => {
-  //   $smurf1.attr('src', 'images/super_smurf.png');
-  //   console.log('superSmurf');
-  //
-  // });
-  //
-  // $smurphetteSmurf.on('click', () => {
-  //   $smurf2.attr('src', '/images/smurphette.png');
-  //   console.log('smurphetteSmurf');
-  // });
+    if(!player1Chosen) {
+      $smurf1.find('img').attr('src', `images/${id}.png`);
+      player1Chosen = true;
+    } else {
+      $smurf2.find('img').attr('src', `images/${id}.png`);
+      // here you could call the start function if you want the game to start once the second player has clicked
+    }
+    $(e.target).addClass('selected');
+  });
+
 
 
 });

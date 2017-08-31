@@ -32,6 +32,7 @@ h2 h3 {
 .characters {
   display: flex;
   justify-content: center;
+  opacity: 10%;
   div {
     margin-right: 10px;
     background-repeat: no-repeat;
@@ -39,25 +40,29 @@ h2 h3 {
     width: 100px;
     background-size: contain;
     background-position: center;
+    &.selected {
+      border: 1px solid pink; // opacity and border appears when character is selected
+      opacity: 100%;
+    }
   }
 }
 
 /*CHARACTERS*/
 
 #superSmurf {
-  background-image:url('/images/super_smurf.png');
+  background-image:url('/images/superSmurf.png');
 }
 
 #smurphetteSmurf {
-  background-image:url('/images/smurphette.png');
+  background-image:url('/images/smurphetteSmurf.png');
 }
 
 #wheelieSmurf {
-  background-image:url('/images/wheelie_smurf.png');
+  background-image:url('/images/wheelieSmurf.png');
 }
 
-#smurfSmurf {
-  background-image:url('/images/smurf1.png');
+#normalSmurf {
+  background-image:url('/images/normalSmurf.png');
 }
 
 .mainMenu {
@@ -118,38 +123,50 @@ main {
   height: 6vw;
 }
 
-#smurf1 {
-    position: absolute;
-    // background-image:url('/images/smurf1.png');
-    // background-repeat: no-repeat;
-    // background-size: contain;
-    font-size: 0
+/*GAME-WRAPPER IMAGES*/
+
+#finishLine {
+  left:95%;
+  position: absolute;
+  background-image:url('/images/finishLine.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 170%;
+  top: 20%;
+  font-size: 0;
+  z-index: 0;
 }
+
+#smurf1 {
+  position: absolute;
+  font-size: 0;
+  z-index: 1;
+}
+
 #smurf2 {
-    position: absolute;
-    // background-image:url('/images/Smurphette.png');
-    // background-repeat: no-repeat;
-    // background-size: contain;
-    font-size: 0;
+  position: absolute;
+  font-size: 0;
+  z-index: 1;
 }
 
 #smurf1 img {
-  height: 65px;
-  width: 40px;
+  height: 150%;
+  width: 100%;
 }
 
 #smurf2 img {
-  height: 65px;
-  width: 40px;
+  height: 150%;
+  width: 100%;
 }
 
 #mushroomOne {
-    position: absolute;
-    left:10%;
-    background-image:url('/images/annoyingShroom.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    font-size: 0;
+  position: absolute;
+  left:10%;
+  background-image:url('/images/annoyingShroom.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: 0;
 }
 
 #mushroomTwo {
@@ -201,14 +218,6 @@ main {
   width: 29px;
   height: 35px;
   top: 60%;
-}
-
-#smurfHouse {
-    background-image:url('/images/finishLine.png');
-    position: absolute;
-    left:93%;
-    background-color: brown;
-    font-size: 0;
 }
 
 /*SCOREBOARD*/
