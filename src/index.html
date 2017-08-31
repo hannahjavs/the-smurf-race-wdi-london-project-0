@@ -1,73 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>I SMURF Y♥U</title>
-    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type = "text/javascript"
-       src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-    <!-- inject:js -->
-    <!-- endinject -->
-    <!-- inject:css -->
-    <!-- endinject -->
-  </head>
-  <body>
-    <!-- Audio Links For Game -->
-    <audio class="winSound" src="http://soundbible.com/mp3/Ta%20Da-SoundBible.com-1884170640.mp3"></audio>
-    <audio class="mushroomSound" src="http://soundbible.com/mp3/Squish%201-SoundBible.com-662226724.mp3"></audio>
-      <header>
-        <div class="instructions">
-        <h2>Race to the finish line!</h2>
-        <h3 class="turn">Press start and then hit keys as fast as you can to make your smurf get to the house first! Jump on the mushrooms and squish them along the way to get to the end!</h3>
-        </div>
-        <!-- Winner Notification -->
-        <p class="result"></p>
-        <!-- Main Menu -->
-        <div class="mainMenu hidden">
-            <p>Pick Your Characters</p>
-          <div class="characters">
-            <div class="character normalSmurf" id="normalSmurf"></div>
-            <div class="character smurphetteSmurf" id="smurphetteSmurf"></div>
-            <div class="character superSmurf" id="superSmurf"></div>
-            <div class="character wheelieSmurf" id="wheelieSmurf"></div>
-          </div>
-        </div>
-        <div class="reset-panel">
-            <!-- Start/Reset Buttons -->
-            <button class="start">Start Game</button>
-            <button class="reset">Play Again?</button>
-        </div>
-      </header>
-    <div class="page-wrapper">
-      <main>
-          <div class="game-wrapper">
-            <div class="track1">
-
-                  <p>Smurf 2 press key ',' to initiate move then '.' to move. Press key 'L' to squash the mushrooms in order to get to the finish line! </p>
-
-                <div class="images" id="smurf1">SMURF1<img src="/images/normalSmurf.png" alt="smurf1"></div>
-                <div class="images mushroom" id="mushroomOne">Mushroom One</div>
-                <div class="images mushroom" id="mushroomTwo">Mushroom Two</div>
-                <div class="images mushroom" id="mushroomThree">Mushroom Three</div>
-              </div>
-            <div class="track2">
-
-                  <p>Smurf 1 press key 'Z' to initiate move then 'X' to move. Press key 'S' to squash the mushrooms in order to get to the finish line!</p>
-
-                <div class="images" id="smurf2">SMURF2<img src="/images/smurphetteSmurf.png" alt="smurf2"></div>
-                <div class="images mushroom" id="mushroomFour">Mushroom Four</div>
-                <div class="images mushroom" id="mushroomFive">Mushroom Five</div>
-                <div class="images mushroom" id="mushroomSix">Mushroom Six</div>
-            </div>
-              <div class="finishLine" id="finishLine">Finish Line</div>
-            </div>
-          <div class="scoreboard-wrapper">
-            <h4>Smurf 1 Score: <p><span class="smurf1score">0</span></p></h4>
-            <h4>Smurf 2 Score: <p><span class="smurf2score">0</span></p></h4>
-          </div>
-      </main>
+<head>
+  <meta charset="utf-8">
+  <title>I SMURF Y♥U</title>
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type = "text/javascript"
+  src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body>
+  <!-- Audio Links For Game -->
+  <audio class="winSound" src="http://soundbible.com/mp3/Ta%20Da-SoundBible.com-1884170640.mp3"></audio>
+  <audio class="mushroomSound" src="http://soundbible.com/mp3/Squish%201-SoundBible.com-662226724.mp3"></audio>
+  <header>
+    <div class="instructions">
+      <h2>Race to the finish line!</h2>
+      <h3 class="turn">Press start and then hit keys as fast as you can to make your smurf get to the house first! Jump on the mushrooms and squish them along the way to get to the end!</h3>
     </div>
+    <!-- Main Menu -->
+    <div class="mainMenu hidden">
+      <p>Pick Your Characters</p>
+      <div class="characters">
+        <div class="character normalSmurf" id="normalSmurf"></div>
+        <div class="character smurphetteSmurf" id="smurphetteSmurf"></div>
+        <div class="character superSmurf" id="superSmurf"></div>
+        <div class="character wheelieSmurf" id="wheelieSmurf"></div>
+      </div>
+    </div>
+    <div class="reset-panel">
+      <!-- Start/Reset Buttons -->
+      <button class="start">Start Game</button>
+      <button class="reset">Play Again?</button>
+    </div>
+  </header>
+
+  <div class="page-wrapper">
+    <main>
+      <div class="scoreboard-wrapper">
+        <h4>Smurf 1 Score: <span class="smurf1score">0</span></h4>
+        <!-- Winner Notification -->
+        <h4><p class="result"></p></h4>
+        <h4>Smurf 2 Score: <span class="smurf2score">0</span></h4>
+      </div>
+
+      <div class="game-wrapper">
+        <div class="track1 tracks" >
+
+          <p>Smurf 2 press key ',' to initiate move then '.' to move. Press key 'L' to squash the mushrooms in order to get to the finish line!</p>
+
+          <div class="images" id="smurf1">SMURF1<img src="/images/normalSmurf.png" alt="smurf1"></div>
+          <div class="images mushroom" id="mushroomOne">Mushroom One</div>
+          <div class="images mushroom" id="mushroomTwo">Mushroom Two</div>
+          <div class="images mushroom" id="mushroomThree">Mushroom Three</div>
+
+        </div>
+
+        <div class="track2 tracks">
+
+          <p>Smurf 1 press key 'Z' to initiate move then 'X' to move. Press key 'S' to squash the mushrooms in order to get to the finish line!</p>
+
+          <div class="images" id="smurf2">SMURF2<img src="/images/smurphetteSmurf.png" alt="smurf2"></div>
+          <div class="images mushroom" id="mushroomFour">Mushroom Four</div>
+          <div class="images mushroom" id="mushroomFive">Mushroom Five</div>
+          <div class="images mushroom" id="mushroomSix">Mushroom Six</div>
+        </div>
+        <div class="finishLine" id="finishLine">Finish Line</div>
+      </div>
+    </main>
+  </div>
   <!-- Footer -->
   <footer>
     <ul>

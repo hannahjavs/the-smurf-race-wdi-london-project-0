@@ -18,6 +18,7 @@ $(() => {
   const $smurf2score = $('.smurf2score');
   const $instructions = $('.instructions');
   const $mainMenu = $('.mainMenu');
+  const $startButton = $('.startButton');
 
   // LET VARIABLES NEEDED FOR GAME
   let smurf1LastMove = 188;
@@ -38,8 +39,15 @@ $(() => {
   //once player 1 and player 2 have picked a character,
   //UHIDE the characters and show instructions.
 
+
+  function startAnimation($startButton) {
+    $startButton.addClass('animated bounceIn');
+  }
+
   // Start Function
   function start() {
+    startAnimation($('.start'));
+    $startButton.onload = true;
     $instructions.addClass('hidden');
     $mainMenu.removeClass('hidden');
     gameOver = false;
@@ -74,14 +82,14 @@ $(() => {
       checkCollisionMushroomFive($smurf2);
       checkCollisionMushroomSix($smurf2);
       if(smurfPos >= finishLinePos) { // If smurf pos is >= to the finishLine position then,
-        $result.html(name + ' WINS!!!'); // this smurf has won!
+        $result.html(name + ' WINS!!!').addClass('animated wobble'); // this smurf has won!
         $winSound.play(); // when it hits 50px also play winsound!
         gameOver = true; // This tells the programme it is game over.
 
         // Score Board Function
         if(name === 'SMURF1' && smurfPos >= finishLinePos) {
           smurf1score++; // add one to the score
-          $smurf1score.text(smurf1score) ;// diplay & update the score1
+          $smurf1score.text(smurf1score); // diplay & update the score1
         } else if(name ==='SMURF2' && smurfPos >= finishLinePos) {
           smurf2score++; // add one to the score
           $smurf2score.text(smurf2score); // diplay & update the score2
