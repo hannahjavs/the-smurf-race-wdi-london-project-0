@@ -19,6 +19,7 @@ $(() => {
   const $instructions = $('.instructions');
   const $mainMenu = $('.mainMenu');
   const $startButton = $('.startButton');
+  const $raceTimer = $('.raceTimer');
 
   // LET VARIABLES NEEDED FOR GAME
   let smurf1LastMove = 188;
@@ -40,6 +41,8 @@ $(() => {
   //UHIDE the characters and show instructions.
 
 
+
+
   function startAnimation($startButton) {
     $startButton.addClass('animated bounceIn');
   }
@@ -53,6 +56,8 @@ $(() => {
     gameOver = false;
     //When start button is pressed again save the score for the next round.
   }
+
+
   // Reset Function
   function reset() {
     // move smurfs back to start position and reset the score.
@@ -66,6 +71,8 @@ $(() => {
     $mushroomSix.show();
     $mainMenu.removeClass('hidden'); // show characters again on reset
     $instructions.addClass('hidden');
+    startClock();
+    // animateSmurf();
   }
 
   function animateSmurf($smurf) {
@@ -213,21 +220,41 @@ $(() => {
   // this will call a function called chooseSmurf
   // inside chooseSmurf, grab the ID of the smurf you cliked on, and console log it
 
+
+  // Function to choose characters
   const $characters = $('.character');
+
   $characters.on('click', (e) => {
     if($(e.target).hasClass('selected')) return false;
     const id = $(e.target).attr('id');
-
     if(!player1Chosen) {
       $smurf1.find('img').attr('src', `images/${id}.png`);
       player1Chosen = true;
     } else {
       $smurf2.find('img').attr('src', `images/${id}.png`);
-      // here you could call the start function if you want the game to start once the second player has clicked
+      // here you could call the start function if you want the game to start AUTOMATICALLY once the second player has clicked
+      startClock();
     }
     $(e.target).addClass('selected');
   });
 
 
 
+  // 3 - 2 - 1 START TIMER ONCE SECOND CHARACTER IS SELECTED
+  function startClock() {
+    let timeRemaining = 3;
+    $raceTimer.html(timeRemaining);
+    const timerid = setInterval(() => {
+      timeRemaining--;
+      $raceTimer.html(timeRemaining);
+      if(timeRemaining === 0) {
+        clearInterval(timerid);
+        $raceTimer.html('GO!').addClass('animated flash');
+
+        // gameOver = false
+        // hide characters
+        // hide raceTimer
+      }
+    }, 1000);
+  }
 });

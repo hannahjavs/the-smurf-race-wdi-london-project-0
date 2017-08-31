@@ -16,6 +16,20 @@ body {
   display: none;
 }
 
+
+.raceTimer {
+  max-width: 100%;
+  height: 56px;
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid black;
+  padding: 0 10px;
+  font-size: 50px;
+}
+
+
 /*HEADER*/
 
 .instructions {
@@ -48,7 +62,7 @@ h2 h3 {
     background-size: contain;
     background-position: center;
     &.selected {
-      border: 1px solid pink; // opacity and border appears when character is selected
+      border: 1px solid grey; // opacity and border appears when character is selected
       opacity: 100%;
     }
   }
