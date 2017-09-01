@@ -58,7 +58,7 @@ $(() => {
   }
 
 
- 
+
 
   // Reset Function
   function reset() {
@@ -241,10 +241,10 @@ $(() => {
     if($(e.target).hasClass('selected')) return false;
     const id = $(e.target).attr('id');
     if(!player1Chosen) {
-      $smurf1.find('img').attr('src', `images/${id}.png`);
+      $smurf1.find('img').attr('src', `/public/images/${id}.png`);
       player1Chosen = true;
     } else {
-      $smurf2.find('img').attr('src', `images/${id}.png`);
+      $smurf2.find('img').attr('src', `/public/images/${id}.png`);
       // start count down
       startClock();
     }
